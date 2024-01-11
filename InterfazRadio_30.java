@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public interface InterfazRadio_30 {
 
@@ -21,5 +21,5 @@ public interface InterfazRadio_30 {
 
     public void guardarEstacion(float frecuencia, int banda, int posicion);
 
-    public <E> ArrayList<E> recuperarEstacion(int posicion);
+    public List<Float> recuperarEstacion(int posicion);
 }
