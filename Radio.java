@@ -64,7 +64,7 @@ public class Radio implements InterfazRadio_30 {
             estacionList.add(frecuencia);
             estacionList.add((float) banda);
         } else {
-            System.out.println("Invalid position. Station not added.");
+            System.out.println("Posicion no válida. Estacion no agregada.");
         }
     }
 
@@ -72,7 +72,7 @@ public class Radio implements InterfazRadio_30 {
         if (posicion >= 0 && posicion < favoritos.size()) {
             return favoritos.get(posicion);
         } else {
-            System.out.println("Invalid position. No station found.");
+            System.out.println("Posicion no válida. Estacion no agregada.");
             return null;
         }
     }
@@ -84,7 +84,7 @@ public class Radio implements InterfazRadio_30 {
         } else if (condicion == FM) {
             rango = rangoFM;
         } else {
-            throw new IllegalArgumentException("Condición no válida. Debe ser AM o FM.");
+            throw new IllegalArgumentException("Condición no valida. Debe ser AM o FM.");
         }
 
         double rangoMin = rango[0];
