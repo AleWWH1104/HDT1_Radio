@@ -13,6 +13,9 @@ public class Radio implements InterfazRadio_30 {
 
     private List<List<Float>> favoritos;
 
+    private static final double[] rangoAM = { 530, 1610, 10 };
+    private static final double[] rangoFM = { 87.9, 107.9, 0.2 };
+
     public Radio(boolean encendido, int banda, float estacion, int volumen) {
         this.encendido = encendido;
         this.banda = banda;
@@ -75,19 +78,18 @@ public class Radio implements InterfazRadio_30 {
     }
 
     public static double aproximarNumero(double numero, int condicion) {
-        double rangoMin, rangoMax, paso;
-
-        if (condicion == 0) {
-            rangoMin = 530;
-            rangoMax = 1610;
-            paso = 10;
-        } else if (condicion == 1) {
-            rangoMin = 87.9;
-            rangoMax = 107.9;
-            paso = 0.2;
+        double[] rango;
+        if (condicion == AM) {
+            rango = rangoAM;
+        } else if (condicion == FM) {
+            rango = rangoFM;
         } else {
-            throw new IllegalArgumentException("Condición no válida. Debe ser 0 o 1.");
+            throw new IllegalArgumentException("Condición no válida. Debe ser AM o FM.");
         }
+
+        double rangoMin = rango[0];
+        double rangoMax = rango[1];
+        double paso = rango[2];
 
         double cociente = Math.round((numero - rangoMin) / paso);
         double aproximado = cociente * paso + rangoMin;
@@ -97,7 +99,6 @@ public class Radio implements InterfazRadio_30 {
         } else if (aproximado > rangoMax) {
             aproximado = rangoMax;
         }
-
-        return aproximado;
+        return Math.round(aproximado * 10.0) / 10.0;
     }
 }
