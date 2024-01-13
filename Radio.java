@@ -9,9 +9,9 @@ public class Radio implements InterfazRadio_30 {
     private int banda;
     private float estacion;
     private int volumen;
-    private int numFavoritos = 6;
+    private int numFavoritos = 12;
 
-    private List<List<Float>> favoritos;
+    public List<List<Float>> favoritos;
 
     private static final double[] rangoAM = { 530, 1610, 10 };
     private static final double[] rangoFM = { 87.9, 107.9, 0.2 };
@@ -54,7 +54,31 @@ public class Radio implements InterfazRadio_30 {
     }
 
     public void setVolumen(int volumen) {
-        this.volumen = volumen;
+        if (volumen < 0) {
+            this.volumen = 0;
+        } else if (volumen > 100) {
+            this.volumen = 100;
+        } else {
+            this.volumen = volumen;
+        }
+    }
+
+    public void volUp(){
+        if (volumen < 100) {
+            this.volumen = volumen + 1;
+            if (volumen > 100) {
+                this.volumen = 100;
+            }
+        }
+    }
+
+    public void volDown(){
+        if (volumen > 0) {
+            this.volumen = volumen - 1;
+            if (volumen < 0) {
+                this.volumen = 0;
+            }
+        }
     }
 
     public void guardarEstacion(float frecuencia, int banda, int posicion) {
@@ -63,6 +87,9 @@ public class Radio implements InterfazRadio_30 {
             estacionList.clear();
             estacionList.add(frecuencia);
             estacionList.add((float) banda);
+            for (Float elemento : estacionList) {
+                System.out.println(elemento);
+            }
         } else {
             System.out.println("Posicion no válida. Estacion no agregada.");
         }
@@ -77,7 +104,7 @@ public class Radio implements InterfazRadio_30 {
         }
     }
 
-    public static double aproximarNumero(double numero, int condicion) {
+    public double aproximarNumero(double numero, int condicion) {
         double[] rango;
         if (condicion == AM) {
             rango = rangoAM;
