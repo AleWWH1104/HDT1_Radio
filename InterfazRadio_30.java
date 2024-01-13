@@ -9,17 +9,17 @@ public interface InterfazRadio_30 {
 
     public void setVolumen(int volumen);
 
-    public void setEstacionBanda(float frecuencia, int banda);
+    public void setEstacionBanda(double frecuencia, int banda);
 
     public boolean getEncendido();
 
-    public float getEstacion();
+    public double getEstacion();
 
     public int getBanda();
 
     public int getVolumen();
 
-    public void guardarEstacion(float frecuencia, int banda, int posicion);
+    public void guardarEstacion(double frecuencia, int banda, int posicion);
 
-    public List<Float> recuperarEstacion(int posicion);
+    public List<Double> recuperarEstacion(int posicion);
 }

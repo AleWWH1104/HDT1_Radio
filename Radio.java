@@ -7,16 +7,16 @@ public class Radio implements InterfazRadio_30 {
     public static final int FM = 1;
     private boolean encendido;
     private int banda;
-    private float estacion;
+    private double estacion;
     private int volumen;
     private int numFavoritos = 12;
 
-    public List<List<Float>> favoritos;
+    public List<List<Double>> favoritos;
 
     private static final double[] rangoAM = { 530, 1610, 10 };
     private static final double[] rangoFM = { 87.9, 107.9, 0.2 };
 
-    public Radio(boolean encendido, int banda, float estacion, int volumen) {
+    public Radio(boolean encendido, int banda, double estacion, int volumen) {
         this.encendido = encendido;
         this.banda = banda;
         this.estacion = estacion;
@@ -40,11 +40,11 @@ public class Radio implements InterfazRadio_30 {
         return banda;
     }
 
-    public float getEstacion() {
+    public double getEstacion() {
         return estacion;
     }
 
-    public void setEstacionBanda(float frecuencia, int banda) {
+    public void setEstacionBanda(double frecuencia, int banda) {
         this.estacion = frecuencia;
         this.banda = banda;
     }
@@ -81,21 +81,18 @@ public class Radio implements InterfazRadio_30 {
         }
     }
 
-    public void guardarEstacion(float frecuencia, int banda, int posicion) {
+    public void guardarEstacion(double frecuencia, int banda, int posicion) {
         if (posicion >= 0 && posicion < favoritos.size()) {
-            List<Float> estacionList = favoritos.get(posicion);
+            List<Double> estacionList = favoritos.get(posicion);
             estacionList.clear();
             estacionList.add(frecuencia);
-            estacionList.add((float) banda);
-            for (Float elemento : estacionList) {
-                System.out.println(elemento);
-            }
+            estacionList.add((double) banda);
         } else {
             System.out.println("Posicion no válida. Estacion no agregada.");
         }
     }
 
-    public List<Float> recuperarEstacion(int posicion) {
+    public List<Double> recuperarEstacion(int posicion) {
         if (posicion >= 0 && posicion < favoritos.size()) {
             return favoritos.get(posicion);
         } else {

@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -26,7 +27,7 @@ public class Main {
                     if (encendido == true){
                         System.out.println("0 para AM\n1 para FM");
                         int banda = Integer.parseInt(in.nextLine());
-                        float emisora = radio.getEstacion();
+                        double emisora = radio.getEstacion();
                         radio.setEstacionBanda(emisora, banda);
                     }else{
                         System.out.println("Radio esta apago; Encienda para sus funciones");
@@ -36,7 +37,9 @@ public class Main {
                         int banda = radio.getBanda();
                         System.out.print("Eliga un numero de emisora: ");
                         double numEmisora = Double.parseDouble(in.nextLine());
-                        radio.aproximarNumero(numEmisora, banda);
+                        double emisora = radio.aproximarNumero(numEmisora, banda);
+                        System.out.println(emisora);
+                        radio.setEstacionBanda(emisora, banda);
                     }else{System.out.println("Radio esta apago; Encienda para sus funciones");
                     } break;
                 case "4":
@@ -49,10 +52,16 @@ public class Main {
                     } break;
                 case "5":
                     if (encendido == true){
-                        System.out.print("Seleccion boton? (1-12)");
+                        System.out.print("Seleccion boton? (1-12): ");
                         int posicion = Integer.parseInt(in.nextLine());
-                        int posicion2 = posicion - 1;
-                        radio.recuperarEstacion(posicion2);
+                        List<Double> resultado = radio.recuperarEstacion(posicion);
+                        // Verificas si el resultado es null (posición no válida) o imprimes la lista
+                        if (resultado != null) {
+                            System.out.println("Estación recuperada para la posición " + posicion+ ":");
+                            for (Double valor : resultado) {
+                                System.out.println(valor);
+                            }
+                        }
                     }else{System.out.println("Radio esta apago; Encienda para sus funciones");
                     } break;
                 case "6":
@@ -63,7 +72,7 @@ public class Main {
                     if (opVol.equals("w")){
                         radio.volUp();
                         int vol = radio.getVolumen();
-                        System.out.println(vol);   
+                        System.out.println("Volumen actual: " + vol);   
                     } else if (opVol.equals("s")){
                         radio.volDown();
                         int vol = radio.getVolumen();
