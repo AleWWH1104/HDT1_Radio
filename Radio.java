@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Radio implements InterfazRadio_30 {
     protected final String marca = "Sansun";
@@ -81,15 +83,15 @@ public class Radio implements InterfazRadio_30 {
         }
     }
 
-    public void guardarEstacion(double frecuencia, int banda, int posicion) {
-        if (posicion >= 0 && posicion < favoritos.size()) {
-            List<Double> estacionList = favoritos.get(posicion);
-            estacionList.clear();
-            estacionList.add(frecuencia);
-            estacionList.add((double) banda);
-        } else {
-            System.out.println("Posicion no válida. Estacion no agregada.");
+
+    public void guardarEstacion(double estacion, int banda, int boton) {
+        List<Double> emisoras = favoritos.get(boton);
+        if (emisoras == null) {
+            emisoras = new ArrayList<>();
         }
+        emisoras.add(estacion);
+        favoritos.set(boton, emisoras);
+        System.out.println("Emisora guardada en el botón " + boton);
     }
 
     public List<Double> recuperarEstacion(int posicion) {
@@ -124,5 +126,14 @@ public class Radio implements InterfazRadio_30 {
             aproximado = rangoMax;
         }
         return Math.round(aproximado * 10.0) / 10.0;
+    }
+    public void mostrarEmisorasGuardadas() {
+        for (int i = 0; i < favoritos.size(); i++) {
+            List<Double> emisoras = favoritos.get(i);
+            System.out.println("Botón " + (i + 1) + ":");
+            for (double emisora : emisoras) {
+                System.out.println(emisora);
+            }
+        }
     }
 }
