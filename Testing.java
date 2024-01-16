@@ -6,6 +6,21 @@ import java.util.List;
 public class Testing {
 
     @Test
+    public void testVolumen() {
+        Radio radio = new Radio(true, Radio.FM, 95.5, 50);
+        assertEquals(50, radio.getVolumen());
+
+        radio.setVolumen(75);
+        assertEquals(75, radio.getVolumen());
+
+        radio.volUp();
+        assertEquals(76, radio.getVolumen());
+
+        radio.volDown();
+        assertEquals(75, radio.getVolumen());
+    }
+    
+    @Test
     public void testVolumenLimites() {
         Radio radio = new Radio(true, Radio.FM, 95.5, 50);
 
