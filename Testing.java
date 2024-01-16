@@ -90,5 +90,35 @@ public class Testing {
         assertEquals(88.7, frecuenciaAproximada);
     }
 
+    @Test
+    public void testInicializacion() {
+        Radio radio = new Radio(true, Radio.AM, 1000.0, 50);
+
+        assertTrue(radio.getEncendido());
+        assertEquals(Radio.AM, radio.getBanda());
+        assertEquals(1000.0, radio.getEstacion());
+        assertEquals(50, radio.getVolumen());
+    }
+
+    @Test
+    public void testGuardarRecuperarEstacionInvalida() {
+        Radio radio = new Radio(true, Radio.FM, 95.5, 50);
+
+        // Intentar guardar en un botón no existente
+        radio.guardarEstacion(98.3, Radio.FM, 15);
+        List<Double> emisorasGuardadas = radio.recuperarEstacion(15);
+
+        assertNull(emisorasGuardadas);
+    }
+
+    @Test
+    public void testAproximarNumeroInvalido() {
+        Radio radio = new Radio(true, Radio.AM, 1000.0, 50);
+
+        // Intentar aproximar un número con una condición no válida
+        assertThrows(IllegalArgumentException.class, () -> {
+            radio.aproximarNumero(540.25, 2);
+        });
+    }
 
 }
