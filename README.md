@@ -1,6 +1,4 @@
 # HDT1_Radio
-intruc
-
 Iris Ayala- 23965 
 Gabriel Bran - 23590 
 David Dominguez - 23712 
