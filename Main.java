@@ -1,3 +1,6 @@
+/* La clase main maneja el flujo del programa, manda a llamar todas las
+funciones necesarias asi como el metodo para iniciar el programa */
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -108,7 +111,6 @@ public class Main {
                     // Apagar la radio
                     radio.setEncendido(false);
                     System.out.println("Radio APAGADO");
-                    salir = true; // Salir del bucle
                     break;
                 default:
                     System.out.println("Ingrese valor válido");

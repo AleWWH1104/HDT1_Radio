@@ -1,7 +1,10 @@
+/* La clase radio contiene atributos y metodos que modelan una radio 
+Entre sus atributos, se incluyen características como la frecuencia actual, el volumen, 
+y el estado de encendido o apagado entre otras operaciones relacionadas. 
+Ademas implementa la interfaz Radio*/
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 // Implementación de la interfaz InterfazRadio_30
 public class Radio implements InterfazRadio_30 {
