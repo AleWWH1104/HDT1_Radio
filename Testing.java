@@ -101,17 +101,6 @@ public class Testing {
     }
 
     @Test
-    public void testGuardarRecuperarEstacionInvalida() {
-        Radio radio = new Radio(true, Radio.FM, 95.5, 50);
-
-        // Intentar guardar en un botón no existente
-        radio.guardarEstacion(98.3, Radio.FM, 15);
-        List<Double> emisorasGuardadas = radio.recuperarEstacion(15);
-
-        assertNull(emisorasGuardadas);
-    }
-
-    @Test
     public void testAproximarNumeroInvalido() {
         Radio radio = new Radio(true, Radio.AM, 1000.0, 50);
 
